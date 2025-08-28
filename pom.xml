@@ -1,22 +1,22 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>in.javahome</groupId>
     <artifactId>myweb</artifactId>
-    <packaging>war</packaging>
     <version>8.6.7</version>
+    <packaging>war</packaging>
     <name>Java Home myweb</name>
     <url>http://maven.apache.org</url>
-    
+
     <properties>
-        <docker.image.prefix>kammana</docker.image.prefix>
-        <sonar.host.url>http://18.181.164.81:9000/</sonar.host.url>
-        <!-- Define Java version here -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <docker.image.prefix>kammana</docker.image.prefix>
+        <sonar.host.url>http://18.181.164.81:9000/</sonar.host.url>
     </properties>
 
     <dependencies>
@@ -27,13 +27,12 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    
+
     <distributionManagement>
         <snapshotRepository>
             <id>nexusRepo</id>
             <url>http://34.208.218.12:8081/repository/sample-snapshots/</url>
         </snapshotRepository>
-        
         <repository>
             <id>nexusRepo</id>
             <url>http://44.202.251.20:8081/repository/flm-releases/</url>
@@ -41,17 +40,16 @@
     </distributionManagement>
 
     <pluginRepositories>
-        <pluginRepository>    
+        <pluginRepository>
             <id>maven3</id>
-            <name>Maven.org</name>
+            <name>Maven Central</name>
             <url>https://repo1.maven.org/maven2</url>
         </pluginRepository>
     </pluginRepositories>
 
-    <!-- ✅ Add modern build plugins -->
     <build>
         <plugins>
-            <!-- Compiler plugin -->
+            <!-- Modern compiler plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -62,14 +60,14 @@
                 </configuration>
             </plugin>
 
-            <!-- WAR plugin (fixes your Jenkins build failure) -->
+            <!-- ✅ Updated WAR plugin to avoid Jenkins classloading issues -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.4.0</version>
             </plugin>
 
-            <!-- Surefire for modern test support -->
+            <!-- Surefire plugin to support test execution -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -77,5 +75,5 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
+
